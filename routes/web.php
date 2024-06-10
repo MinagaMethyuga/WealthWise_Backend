@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Hash;
 
 Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
+
+
+Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
