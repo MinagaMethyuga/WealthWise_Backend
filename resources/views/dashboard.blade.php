@@ -1,45 +1,28 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('WealthWise Admin Dashboard') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                @foreach($users as $user)
-                    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg mb-4">
-                        <div class="max-w-full max-h-full p-4">
-                            <h1 class="font-bold text-xl text-black pl-10">Name: {{ $user->Fname }}</h1>
-                            <h2 class="font-medium text-xl text-black pl-10">Email: {{ $user->email }}</h2>
-
-                            {{-- buttons with the delete user funtionality --}}
-                            <button onclick="deleteUser({{ $user->id }})" class="bg-neutral-300 relative left-3/4 -top-7 p-2 rounded-xl">Delete User</button>
-                        </div>
+                <div class="border-4 w-1/3 pt-5 rounded-xl">
+                    <h1 class="font-bold text-3xl pl-7">User Count</h1>
+                    <h2 class="pl-7 text-xl pt-2">There are: {{ $userCount }} Users</h2>
+                    <div class="flex justify-center mt-5">
+                        <button class="border-4 border-gray-600 p-2 rounded-xl mt-7 mb-7" onclick="UserShow()">Manage all Users</button>
                     </div>
-                @endforeach
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        function deleteUser(userId) {
-            if (confirm('Are you sure you want to delete this user?')) {
-                axios.delete('/dashboard', {
-                    data: {
-                        user_id: userId
-                    }
-                })
-                    .then(function (response) {
-                        alert(response.data.message);
-                        // Optionally, you can remove the deleted user from the UI
-                    })
-                    .catch(function (error) {
-                        console.error(error);
-                        alert('Failed to delete user');
-                    });
-            }
+        function UserShow(){
+            window.location.href = '{{ route("user_list_dashboard") }}';
         }
     </script>
 </x-app-layout>
+

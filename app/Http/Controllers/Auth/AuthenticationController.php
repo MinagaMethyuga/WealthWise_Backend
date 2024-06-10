@@ -14,8 +14,8 @@ class AuthenticationController extends Controller
     {
         return rescue(function ()use ($request){
             $request->validate([
-                'fname'=>'string|required',
-                'lname'=>'string|required',
+                'first_name'=>'string|required',
+                'last_name'=>'string|required',
                 'email'=>'email|required|unique:users',
                 'password'=>'string|required|min:8',
             ]);
