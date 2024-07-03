@@ -64,4 +64,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function cardDetails(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Accounts::class);
+    }
 }

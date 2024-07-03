@@ -17,3 +17,12 @@ Route::post('/login',[
     'LoginUser'
 ]);
 
+Route::post('/details',[
+    \App\Http\Controllers\Details\accountDetailsController::class,
+    'Useraccount'
+]);
+
+Route::get('/homeCard',[
+    \App\Http\Controllers\Details\accountDetailsController::class,
+    'UpdateCard'
+]);
