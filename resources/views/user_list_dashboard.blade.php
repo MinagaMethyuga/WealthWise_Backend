@@ -14,8 +14,7 @@
                         <div class="max-w-full h-auto p-4 mt-4">
                         <h1 class="font-bold text-xl text-black pl-10">Name: {{ $user->first_name }}</h1>
                         <h2 class="font-medium text-xl text-black pl-10">Email: {{ $user->email }}</h2>
-
-                    <button onclick="deleteUser({{ $user->id }})" class="p-3 border-2 relative -top-14 -right-3/4 rounded-2xl bg-red-900 text-white">Delete User</button>
+                            <button onclick="deleteUser({{ $user->id }})" class="p-3 border-2 relative -top-14 -right-3/4 rounded-2xl bg-red-900 text-white">Delete User</button>
                         </div>
                         </div>
                     @endforeach

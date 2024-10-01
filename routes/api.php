@@ -26,3 +26,14 @@ Route::get('/homeCard',[
     \App\Http\Controllers\Details\accountDetailsController::class,
     'UpdateCard'
 ]);
+
+Route::post('/addincome',[
+    \App\Http\Controllers\Details\accountDetailsController::class,
+    'addIncome'
+]);
+
+Route::post('/addexpense',[
+    \App\Http\Controllers\Details\accountDetailsController::class,
+    'addExpense'
+]);
+
