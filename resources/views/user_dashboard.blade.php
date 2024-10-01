@@ -15,7 +15,7 @@
 </head>
 <body class="w-full h-screen bg-white overflow-hidden flex">
 {{--navigation panel--}}
-<div class="h-screen flex-col justify-center text-center border-r-2 border-blue-600" style="width: 20%">
+<div class="h-screen flex-col justify-center text-center border-r-2 border-blue-600 shadow-xl" style="width: 20%">
     <h1 class="text-black font-bold mt-6 text-3xl mx-auto">WealthWise</h1>
 
     <div class="border-2 rounded-xl text-start mt-10 flex items-center cursor-pointer bg-blue-600">
@@ -62,7 +62,7 @@
     {{--Flex container for cards--}}
     <div class="flex ml-6 mt-3" style="height: 40%; width: 95%;">
         {{--Bank Balance card--}}
-        <div style="width: 35%;height: 100%;" class="h-full bg-white rounded-2xl border-2 border-blue-600">
+        <div style="width: 35%;height: 100%;" class="h-full bg-white rounded-2xl border-2 border-blue-600 shadow-xl">
             <p class="text-black font-semibold text-xl ml-4 mt-3">Account Balance</p>
             <div class="bg-blue-400 mx-auto mt-3 rounded-2xl flex-col text-center" style="height: 75%; width: 93%;">
                 <h1 class="mx-auto text-sm font-semibold text-white pt-10">Current balance</h1>
@@ -71,7 +71,7 @@
             </div>
         </div>
         {{--Bank Income card--}}
-        <div style="width: 35%;height: 100%;" class="ml-2 h-full bg-white rounded-2xl border-blue-600 border-2">
+        <div style="width: 35%;height: 100%;" class="ml-2 h-full bg-white rounded-2xl border-blue-600 border-2 shadow-xl">
             <p class="text-black font-semibold text-xl ml-4 mt-3">Account Income</p>
             <h2 class="text-xs font-semibold ml-4 mt-1">{{ date('F') }}</h2>
             <h2 class="font-bold text-2xl ml-4 mt-4">LKR {{ $Income }}</h2>
@@ -81,7 +81,7 @@
             </div>
         </div>
         {{--Bank Expense card--}}
-        <div style="width: 35%;height: 100%;" class="ml-2 h-full bg-white rounded-2xl border-blue-600 border-2">
+        <div style="width: 35%;height: 100%;" class="ml-2 h-full bg-white rounded-2xl border-blue-600 border-2 shadow-xl">
             <p class="text-black font-semibold text-xl ml-4 mt-3">Account Expends</p>
             <h2 class="text-xs font-semibold ml-4 mt-1">{{ date('F') }}</h2>
             <h2 class="font-bold text-2xl ml-4 mt-4">LKR {{ $expense }}</h2>
@@ -94,7 +94,7 @@
 
     {{--Flex container for transactions--}}
     <div class="w-3 h-3 mt-2 ml-6 flex " style="width: 95%;height: 42%">
-        <div class="bg-white rounded-xl border-blue-600 border-2" style="width: 63%;height: 100%">
+        <div class="bg-white rounded-xl border-blue-600 border-2 shadow-xl" style="width: 63%;height: 100%">
             <h1 class="font-semibold ml-4 mt-2 text-lg">Money Flow</h1>
             {{--Money Flow Chart--}}
             <div class="mx-auto flex justify-center items-center" style="height: 85%;width: 95%;">

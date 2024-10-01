@@ -12,7 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    public $timestamps = false;
+    public $timestamps = true;
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;

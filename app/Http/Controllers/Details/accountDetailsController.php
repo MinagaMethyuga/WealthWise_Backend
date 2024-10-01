@@ -150,4 +150,5 @@ class accountDetailsController extends Controller
             ], 500);
         });
     }
+
 }
