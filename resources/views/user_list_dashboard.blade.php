@@ -26,14 +26,18 @@
     <script>
         function deleteUser(userId) {
             if (confirm('Are you sure you want to delete this user?')) {
-                axios.delete('/dashboard', {
+                axios.delete(`/dashboard`, {
                     data: {
                         user_id: userId
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Include CSRF token if using web routes
                     }
                 })
                     .then(function (response) {
                         alert(response.data.message);
-                        // Optionally, you can remove the deleted user from the UI
+                        // Optionally, remove the deleted user from the UI
+                        location.reload(); // Refresh the page or remove the user element from the UI
                     })
                     .catch(function (error) {
                         console.error(error);

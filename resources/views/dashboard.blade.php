@@ -23,25 +23,25 @@
         <h1 class="text-white font-semibold py-1 text-md my-auto ml-2">Admin Dashboard</h1>
     </div>
 
-    <div class="border-2 rounded-xl text-start mt-3 flex items-center cursor-pointer">
+    <a href="{{ route('user_list_dashboard') }}"><div class="border-2 rounded-xl text-start mt-3 flex items-center cursor-pointer">
         <div class="w-6 h-6 ml-5" style="background-image: url('{{ asset('Assests/user.png') }}');background-size: cover;background-position: center;"></div>
         <h1 class="text-black font-semibold py-1 text-md my-auto ml-2">User Management</h1>
-    </div>
+    </div></a>
 
-    <div class="border-2 rounded-xl text-start mt-3 flex items-center cursor-pointer">
+    <a href="https://console.firebase.google.com/u/0/project/wealthwise-93f4e/messaging/onboarding?nonce=1727855515056"><div class="border-2 rounded-xl text-start mt-3 flex items-center cursor-pointer">
         <div class="w-6 h-6 ml-5" style="background-image: url('{{ asset('Assests/transaction.png') }}');background-size: cover;background-position: center;"></div>
-        <h1 class="text-black font-semibold py-1 text-md my-auto ml-2">Transactions</h1>
-    </div>
+        <h1 class="text-black font-semibold py-1 text-md my-auto ml-2">Send Notifications</h1>
+        </div></a>
 
-    <div class="border-2 rounded-xl text-start mt-3 flex items-center cursor-pointer">
+    <a href="{{ route('profile.show') }}"><div class="border-2 rounded-xl text-start mt-3 flex items-center cursor-pointer">
         <div class="w-6 h-6 ml-5" style="background-image: url('{{ asset('Assests/user.png') }}');background-size: cover;background-position: center;"></div>
         <h1 class="text-black font-semibold py-1 text-md my-auto ml-2">Accounts</h1>
-    </div>
+    </div></a>
 
     <div class="mx-auto mt-56 text-left flex" style="width: 90%; height: 12%;">
         <div class="rounded-full bg-black w-12 h-12 mt-3 ml-3" style="background-image: url('{{ asset('Assests/tap-to-pay.png') }}');background-size: cover;"></div>
         <div class="flex-col ml-3 mt-3">
-            <h1 class="text-lg font-semibold">{{ $userfirst_name }} {{ $userlast_name }}</h1>
+            <h1 class="text-lg font-semibold">{{ $userfirst_name }} {{ $userfirst_name }}</h1>
             <h2 class="text-xs font-semibold">{{ $userEmail }}</h2>
         </div>
     </div>
@@ -65,7 +65,7 @@
             <h1 class="text-2xl font-bold mt-4">WealthWise User Management</h1>
             <h1 class="text-left font-normal text-sm ml-6 mt-7">Manage Users</h1>
             <p class="text-left font-semibold text-lg ml-6">Total Wealthy Users: {{ $userCount }}</p>
-            <button class="border rounded-2xl p-3 hover:border-blue-600 transition-all mt-12 border-red-600">Manage Users</button>
+            <a href="{{ route('user_list_dashboard') }}"><button class="border rounded-2xl p-3 hover:border-blue-600 transition-all mt-12 border-red-600">Manage Users</button></a>
         </div>
 
         {{--User Growth Chart--}}
@@ -78,7 +78,7 @@
     {{--Flex container for cards--}}
     <div class="mt-3 ml-6 flex" style="width: 95%;height: 40%;">
         {{--User Activity Table--}}
-        <div class="bg-red-50 rounded-2xl border-2 border-blue-600" style="height: 100%; width: 60%;">
+        <div class="rounded-2xl border-2 border-blue-600" style="height: 100%; width: 60%;">
             <h1 class="font-semibold text-xl ml-6 mt-3">User Activity</h1>
             <div class="overflow-auto h-3/4 mx-6 mt-3">
                 <table class="min-w-full bg-white border border-gray-300 text-center rounded-2xl">
@@ -90,27 +90,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="hover:bg-gray-100">
-                        <td class="py-2 border-b">Registered</td>
-                        <td class="py-2 border-b">user1</td>
-                        <td class="py-2 border-b">2024-10-01 10:00 AM</td>
-                    </tr>
-                    <tr class="hover:bg-gray-100">
-                        <td class="py-2 border-b">Removed</td>
-                        <td class="py-2 border-b">user2</td>
-                        <td class="py-2 border-b">2024-09-30 09:30 AM</td>
-                    </tr>
-                    <tr class="hover:bg-gray-100">
-                        <td class="py-2 border-b">Registered</td>
-                        <td class="py-2 border-b">user3</td>
-                        <td class="py-2 border-b">2024-09-29 11:15 AM</td>
-                    </tr>
-                    <tr class="hover:bg-gray-100">
-                        <td class="py-2 border-b">Removed</td>
-                        <td class="py-2 border-b">user4</td>
-                        <td class="py-2 border-b">2024-09-28 08:45 AM</td>
-                    </tr>
-                    <!-- Add more rows as needed -->
+                    @foreach ($users as $user)
+                        <tr class="hover:bg-gray-100">
+                            <td class="py-2 border-b">Registered</td> <!-- Or dynamic action if available -->
+                            <td class="py-2 border-b">{{ $user->first_name }} {{ $user->last_name }}</td>
+                            <td class="py-2 border-b">{{ $user->created_at }}</td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
@@ -120,7 +106,7 @@
         <div class="bg-white ml-auto rounded-2xl border-2 border-pink-600 flex-col text-center" style="height: 100%; width: 39%;">
             <h1 class="text-2xl font-bold mt-8">Admin Notifications Center</h1>
             <p class="text-sm text-black opacity-50">Send Notification to the WealthWise Mobile application</p>
-            <button class="border rounded-2xl p-3 border-blue-600 hover:border-red-600 transition-all mt-12">Send Notification</button>
+            <a href="https://console.firebase.google.com/u/0/project/wealthwise-93f4e/messaging/onboarding?nonce=1727855515056"><button class="border rounded-2xl p-3 border-blue-600 hover:border-red-600 transition-all mt-12">Send Notification</button></a>
         </div>
     </div>
 </div>

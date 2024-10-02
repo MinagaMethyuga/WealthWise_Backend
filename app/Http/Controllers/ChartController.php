@@ -35,15 +35,24 @@ class ChartController extends Controller
 
     public function getMoneyFlowData()
     {
-        // Fetch total income and expenses for money flow chart
-        $income = Transaction::where('type', 'income')->sum('amount');
-        $expense = Transaction::where('type', 'expense')->sum('amount');
+        // Fetch the currently authenticated user
+        $user = auth()->user();
+
+        // Fetch total income and expenses for the logged-in user
+        $income = Transaction::where('user_id', $user->id)
+            ->where('type', 'income')
+            ->sum('amount');
+
+        $expense = Transaction::where('user_id', $user->id)
+            ->where('type', 'expense')
+            ->sum('amount');
 
         return response()->json([
             'income' => $income,
             'expense' => $expense
         ]);
     }
+
 
     public function getUserGrowthData()
     {

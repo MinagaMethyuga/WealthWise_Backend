@@ -7,6 +7,7 @@ use App\Models\Accounts;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
+use Illuminate\Support\Facades\Hash;
 
 class accountDetailsController extends Controller
 {
@@ -151,4 +152,46 @@ class accountDetailsController extends Controller
         });
     }
 
+
+
+    public function getUserActivity()
+    {
+        $user = auth()->user();
+        $userfirst_name = $user->first_name;
+        $userlast_name = $user->last_name;
+        $userEmail = $user->email;
+
+        // Fetch user's account information
+        $account = Accounts::where('user_id', $user->id)->first();
+
+        // Handle case where account does not exist
+        if (!$account) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No account found for this user.'
+            ], 404);
+        }
+
+        $recentTransactions = Transaction::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->take(10)
+            ->get();
+
+        $useraccountName = $account->account_name;
+        $accountbalance = $account->account_balance;
+        $Income = $account->monthly_income;
+        $expense = $account->total_expenses;
+
+        // Return user dashboard view
+        return view('user_dashboard', compact(
+            'userfirst_name',
+            'userEmail',
+            'userlast_name',
+            'useraccountName',
+            'accountbalance',
+            'Income',
+            'expense',
+            'recentTransactions'
+        ));
+    }
 }

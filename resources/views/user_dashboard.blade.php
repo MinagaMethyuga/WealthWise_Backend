@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual Entry</title>
+    <title>User Dashboard</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,15 +28,10 @@
         <h1 class="text-black font-semibold py-1 text-md my-auto ml-2">Card</h1>
     </div>
 
-    <div class="border-2 rounded-xl text-start mt-3 flex items-center cursor-pointer">
-        <div class="w-6 h-6 ml-5" style="background-image: url('{{ asset('Assests/transaction.png') }}');background-size: cover;background-position: center;"></div>
-        <h1 class="text-black font-semibold py-1 text-md my-auto ml-2">Transactions</h1>
-    </div>
-
-    <div class="border-2 rounded-xl text-start mt-3 flex items-center cursor-pointer">
+    <a href="{{ route('profile.show') }}"><div class="border-2 rounded-xl text-start mt-3 flex items-center cursor-pointer">
         <div class="w-6 h-6 ml-5" style="background-image: url('{{ asset('Assests/user.png') }}');background-size: cover;background-position: center;"></div>
         <h1 class="text-black font-semibold py-1 text-md my-auto ml-2">Accounts</h1>
-    </div>
+    </div></a>
 
     <div class="mx-auto mt-56 text-left flex" style="width: 90%; height: 12%;">
         <div class="rounded-full bg-black w-12 h-12 mt-3 ml-3" style="background-image: url('{{ asset('Assests/tap-to-pay.png') }}');background-size: cover;"></div>
