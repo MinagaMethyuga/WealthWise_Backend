@@ -53,7 +53,6 @@ class ChartController extends Controller
         ]);
     }
 
-
     public function getUserGrowthData()
     {
         // Get the current month
