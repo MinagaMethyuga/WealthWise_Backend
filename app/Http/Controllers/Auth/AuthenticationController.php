@@ -70,4 +70,45 @@ class AuthenticationController extends Controller
 
         return response()->json(['message' => 'User deleted successfully']);
     }
+
+    public function uploadProfileImage(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'user_id' => 'required|numeric',
+            'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        // Get the uploaded file
+        if ($request->hasFile('profile_image')) {
+            $image = $request->file('profile_image');
+            $imageName = time().'.'.$image->extension();
+
+            // Save the image to the 'public/profile_images' directory
+            $image->move(public_path('profile_images'), $imageName);
+
+            // Find the user and update their profile image path
+            $user = User::find($request->user_id);
+            if ($user) {
+                $user->profile_image = 'profile_images/'.$imageName;
+                $user->save();
+
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Image uploaded successfully',
+                    'image_path' => $user->profile_image
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'User not found'
+                ], 404);
+            }
+        }
+
+        return response()->json([
+            'status' => 'error',
+            'message' => 'No image uploaded'
+        ], 400);
+    }
 }

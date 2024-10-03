@@ -36,4 +36,12 @@ Route::post('/addexpense',[
     \App\Http\Controllers\Details\accountDetailsController::class,
     'addExpense'
 ]);
+Route::get('/UserInfo',[
+   \App\Http\Controllers\Details\accountDetailsController::class,
+   'UserInfo'
+]);
 
+Route::post('/uploadImage', [
+    \App\Http\Controllers\Auth\AuthenticationController::class,
+    'uploadProfileImage'
+]);
